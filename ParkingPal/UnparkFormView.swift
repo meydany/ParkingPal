@@ -13,7 +13,7 @@ import ChameleonFramework
 import Parse
 import Bolts
 
-class UnparkFormView: UIViewController {
+class UnparkFormView: UIViewController, FUIAlertViewDelegate {
     
     var headerLabel: UILabel!
     
@@ -25,6 +25,8 @@ class UnparkFormView: UIViewController {
     var fieldViews: [UIView]! = []
     
     var loader: UIActivityIndicatorView!
+    
+    var requestObject: PFObject! =  PFObject(className: "AcceptedRequests")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +104,7 @@ class UnparkFormView: UIViewController {
     }
     
     func submit() {
-        //DBManager.addUser(nameField.text!, location: UserLocation.currentLocation!, time: 0, price: Int(priceField.text!)!)
+        DBManager.addUser(nameField.text!, location: UserLocation.currentLocation!, time: 0, price: Int(priceField.text!)!)
         
         for view in fieldViews {
             UIView.animateWithDuration(0.25, animations: {
@@ -115,12 +117,77 @@ class UnparkFormView: UIViewController {
             self.loader.alpha = 1
         }) { _ in
             self.loader.startAnimating()
+            self.getRequest()
         }
     }
     
     func getRequest() {
         let pfQuery = PFQuery(className: "AcceptedRequests")
         pfQuery.whereKey("Parker", equalTo: nameField.text!)
+        
+        pfQuery.findObjectsInBackgroundWithBlock {
+            (objects:[PFObject]?, error:NSError?) -> Void in
+            if error == nil {
+                if(objects!.count == 0) {
+                    self.getRequest()
+                }
+                if let objects = objects {
+                    for object in objects {
+                        print("Got request from \(object.objectForKey("Requester")!)")
+                        self.requestObject = object
+                        self.gotRequest()
+                    }
+                }
+            } else {
+                print("Not here")
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
     }
     
+    func gotRequest() {
+        let alertView = FUIAlertView()
+        alertView.delegate = self
+        
+        alertView.title = "Request from \(self.requestObject.objectForKey("Requester")!)"
+        
+        alertView.titleLabel.textColor = UIColor.cloudsColor()
+        alertView.titleLabel.font = UIFont.boldFlatFontOfSize(16)
+        
+        alertView.messageLabel.font = UIFont.flatFontOfSize(14)
+        alertView.messageLabel.textColor = UIColor.cloudsColor()
+        
+        alertView.backgroundOverlay.backgroundColor = UIColor.cloudsColor().colorWithAlphaComponent(0.8)
+        alertView.alertContainer.backgroundColor = UIColor.midnightBlueColor()
+        alertView.defaultButtonColor = UIColor.cloudsColor()
+        alertView.defaultButtonShadowColor = UIColor.asbestosColor()
+        alertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
+        alertView.defaultButtonTitleColor = UIColor.asbestosColor();
+        
+        alertView.addButtonWithTitle("Accept")
+        alertView.addButtonWithTitle("Decline")
+        
+        let locationCoordinate = CLLocationCoordinate2DMake((self.requestObject.objectForKey("Location") as! [String:Double])["Latitude"]!, (self.requestObject.objectForKey("Location") as! [String:Double])["Longitude"]!)
+        UserLocation.getAddress(locationCoordinate) { (result) in
+            alertView.messageLabel.text = "Location: \(result) \nTime: \(10)"
+
+            UIView.animateWithDuration(0.25, animations: {
+                self.loader.alpha = 0
+            }) { _ in
+                self.loader.stopAnimating()
+                self.loader.removeFromSuperview()
+                alertView.show()
+            }
+        }
+    }
+    
+    func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+        if(buttonIndex == 0) {
+            self.requestObject.setObject(true, forKey: "Accepted")
+        }else if (buttonIndex == 1) {
+            self.requestObject.setObject(false, forKey: "Accepted")
+        }
+        self.requestObject.saveInBackground()
+    }
 }
