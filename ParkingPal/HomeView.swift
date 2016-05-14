@@ -64,6 +64,7 @@ class HomeView: UIView, GMSMapViewDelegate {
         if(UserLocation.currentLocation != nil) {
             print("Location: \(UserLocation.currentLocation!)")
             print("Address: \(UserLocation.locationAddress!)")
+            print("got here")
             (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: true, completion: nil)
         }
         //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: true, completion: nil)

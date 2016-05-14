@@ -12,6 +12,8 @@ import Bolts
 
 class DBManager {
     
+    static var yourName = "Oran"
+    
     static func addUser(name: String, location: CLLocationCoordinate2D, time: Int, price: Int) {
         
         let coordLocation = ["Longitude" : (location.longitude) as Double, "Latitude" : (location.latitude) as Double]
@@ -26,7 +28,49 @@ class DBManager {
         pfObject.saveInBackground()
     }
     
-    static func removeUser(name: String) {
+    static func addAcceptedRequest(yourName: String, theirName: String, location: CLLocationCoordinate2D) {
+        
+        let coordLocation = ["Longitude" : (location.longitude) as Double, "Latitude" : (location.latitude) as Double]
+        
+        let pfObject = PFObject(className: "AcceptedRequests")
+        
+        pfObject.setObject(yourName, forKey: "Requester")
+        pfObject.setObject(theirName, forKey: "Parker")
+        pfObject.setObject(coordLocation, forKey: "Location")
+        pfObject.setObject(false, forKey: "Accepted")
+        
+        pfObject.saveInBackground()
+    }
+    
+    static func isRequestAccepted(name: String, completion:(result:(Bool))->Void){
+       
+        let pfQuery = PFQuery(className: "AcceptedRequests")
+        pfQuery.whereKey("Parker", equalTo: name as AnyObject)
+        
+        pfQuery.findObjectsInBackgroundWithBlock {
+            (objects:[PFObject]?, error:NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        if ((object.objectForKey("Accepted") as! Bool) == true){
+                            completion(result: true)
+                        }
+                        else{
+                            completion(result: false)
+                        }
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+    }
+    
+    static func add(name: String) {
         let pfQuery = PFQuery(className: "Users")
         pfQuery.whereKey("Name", equalTo: name as AnyObject)
         pfQuery.findObjectsInBackgroundWithBlock {

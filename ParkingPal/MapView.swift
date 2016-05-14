@@ -9,14 +9,17 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import FlatUIKit
-
+import ChameleonFramework
 class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     
     var mapView: GMSMapView!
     var alertViews: [String: FUIAlertView]! = [:]
+    var markerClicked: GMSMarker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Loaded")
         
         let startingLocation = UserLocation.currentLocation
         
@@ -55,7 +58,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     let alertView = FUIAlertView()
                     alertView.delegate = self
                     
-                    alertView.title = "\(result.location)"
+                    alertView.title = "\(UserLocation.locationAddress![0]), \(UserLocation.locationAddress![1])"
                     
                     alertView.titleLabel.textColor = UIColor.cloudsColor()
                     alertView.titleLabel.font = UIFont.boldFlatFontOfSize(16)
@@ -66,15 +69,17 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     
                     alertView.backgroundOverlay.backgroundColor = UIColor.cloudsColor().colorWithAlphaComponent(0.8)
                     alertView.alertContainer.backgroundColor = UIColor.midnightBlueColor()
-                    alertView.defaultButtonColor = UIColor.cloudsColor()
-                    alertView.defaultButtonShadowColor = UIColor.asbestosColor()
+                    alertView.defaultButtonColor = FlatBlue()
+                    alertView.defaultButtonShadowColor = FlatBlueDark()
                     alertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
-                    alertView.defaultButtonTitleColor = UIColor.asbestosColor();
+                    alertView.defaultButtonTitleColor = UIColor.whiteColor()
                     
-                    alertView.addButtonWithTitle("Accept")
-                    
+                    alertView.addButtonWithTitle("Request")
+                
                     alertView.addButtonWithTitle("Cancel")
                     alertView.cancelButtonIndex = 1
+                    
+                    //alertView.buttons[0].backgroundColor = FlatBlue()
                     //alertView.show()
                     
 //                    popover = [[UIPopoverController alloc] initWithContentViewController:nc];
@@ -100,12 +105,16 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     }
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        markerClicked = marker
         alertViews[marker.snippet!]!.show()
+        
         return false
     }
     
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if (buttonIndex == 0){
+            print("requested")
+            DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
             
         }
     }
