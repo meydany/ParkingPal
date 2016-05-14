@@ -31,9 +31,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
-
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("you can click now")
         locationManager.stopUpdatingLocation()
         
         if let location = locations.first {
