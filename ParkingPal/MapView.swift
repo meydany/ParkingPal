@@ -22,6 +22,8 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     
     var loader = UIActivityIndicatorView!()
     
+    var acceptedAlertView = FUIAlertView!()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +38,29 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         mapView.myLocationEnabled = true
         mapView.delegate = self
         
+        
+        acceptedAlertView = FUIAlertView()
+        acceptedAlertView.tag = 1
+        acceptedAlertView.delegate = self
+        
+        acceptedAlertView.title = ""
+        
+        acceptedAlertView.titleLabel.textColor = UIColor.cloudsColor()
+        acceptedAlertView.titleLabel.font = UIFont.boldFlatFontOfSize(20)
+        
+        acceptedAlertView.messageLabel.text = ""
+        acceptedAlertView.messageLabel.font = UIFont.flatFontOfSize(14)
+        acceptedAlertView.messageLabel.textColor = UIColor.cloudsColor()
+        
+        acceptedAlertView.backgroundOverlay.backgroundColor = UIColor.cloudsColor().colorWithAlphaComponent(0.8)
+        acceptedAlertView.alertContainer.backgroundColor = UIColor.midnightBlueColor()
+        acceptedAlertView.defaultButtonColor = FlatBlue()
+        acceptedAlertView.defaultButtonShadowColor = FlatBlueDark()
+        acceptedAlertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
+        acceptedAlertView.defaultButtonTitleColor = UIColor.whiteColor()
+        
+        acceptedAlertView.cancelButtonIndex = 0
+
         //the recieveed location
         //fetch frm parse
         
@@ -116,6 +141,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     }
     
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+        print(buttonIndex)
         if(alertView.tag == 0 && buttonIndex == 0) {
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
             checkIfAccepted()
@@ -123,18 +149,13 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
             loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width/4, height: self.view.frame.height/10))
             loader.sizeToFit()
             loader.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/4)
-            loader.alpha = 0
             loader.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
             loader.color = FlatWatermelon()
+            //loader.startAnimating()
             
-            self.view.addSubview(loader)
+            //self.view.addSubview(loader)
             
-            UIView.animateWithDuration(0.25, animations: {
-                self.loader.alpha = 1
-            }) { _ in
-                self.loader.startAnimating()
-                
-            }
+            
         }else if(alertView.tag == 1) {
             print("Removed")
             DBManager.removeUser(self.markerClicked.snippet!)
@@ -144,31 +165,8 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     }
     
     func checkIfAccepted(){
-        
-        let alertView = FUIAlertView()
-        alertView.tag = 1
-        alertView.delegate = self
-        
-        alertView.title = ""
-        
-        alertView.titleLabel.textColor = UIColor.cloudsColor()
-        alertView.titleLabel.font = UIFont.boldFlatFontOfSize(20)
-        
-        alertView.messageLabel.text = ""
-        alertView.messageLabel.font = UIFont.flatFontOfSize(14)
-        alertView.messageLabel.textColor = UIColor.cloudsColor()
-        
-        alertView.backgroundOverlay.backgroundColor = UIColor.cloudsColor().colorWithAlphaComponent(0.8)
-        alertView.alertContainer.backgroundColor = UIColor.midnightBlueColor()
-        alertView.defaultButtonColor = FlatBlue()
-        alertView.defaultButtonShadowColor = FlatBlueDark()
-        alertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
-        alertView.defaultButtonTitleColor = UIColor.whiteColor()
-        
-        alertView.cancelButtonIndex = 0
-        
         let pfQuery = PFQuery(className: "AcceptedRequests")
-        pfQuery.whereKey("Parker", equalTo: markerClicked.snippet!)
+        pfQuery.whereKey("Parker", equalTo: markerClicked.snippet! as AnyObject)
         
         pfQuery.findObjectsInBackgroundWithBlock {
             (objects:[PFObject]?, error:NSError?) -> Void in
@@ -178,19 +176,19 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     self.checkIfAccepted()
                 }else if((objects![0].objectForKey("Accepted") as! Bool) == true) {
                     print("Hello")
-                    alertView.title = "ACCEPTED"
-                    alertView.messageLabel.text = "Your parking spot is waiting for you"
-                    alertView.addButtonWithTitle("Drive")
-                    alertView.show()
+                    self.acceptedAlertView.title = "ACCEPTED"
+                    self.acceptedAlertView.messageLabel.text = "Your parking spot is waiting for you"
+                    self.acceptedAlertView.addButtonWithTitle("Drive")
+                    self.acceptedAlertView.show()
                     
                     self.loader.removeFromSuperview()
                     
                 }else if ((objects![0].objectForKey("Accepted") as! Bool) == false) {
                     print("Declined")
-                    alertView.title = "DECLINED"
-                    alertView.messageLabel.text = "Better luck next time"
-                    alertView.addButtonWithTitle("Back")
-                    alertView.show()
+                    self.acceptedAlertView.title = "DECLINED"
+                    self.acceptedAlertView.messageLabel.text = "Better luck next time"
+                    self.acceptedAlertView.addButtonWithTitle("Back")
+                    self.acceptedAlertView.show()
                     
                     self.loader.removeFromSuperview()
                 }
