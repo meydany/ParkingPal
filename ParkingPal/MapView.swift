@@ -18,7 +18,6 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     var mapView: GMSMapView!
     var alertViews: [String: FUIAlertView]! = [:]
     var markerClicked: GMSMarker!
-    var timer: NSTimer!
     
     var loader = UIActivityIndicatorView!()
     
@@ -108,6 +107,8 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     alertView.addButtonWithTitle("Cancel")
                     alertView.cancelButtonIndex = 1
                     
+                
+                    
                     //alertView.buttons[0].backgroundColor = FlatBlue()
                     //alertView.show()
                     
@@ -142,6 +143,10 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         print(buttonIndex)
+        DBManager.getUser(self.markerClicked.snippet!) { (result) in
+            NSUserDefaults().setInteger(NSUserDefaults().integerForKey("points") - result.price, forKey: "points")
+            print(NSUserDefaults().integerForKey("points"))
+        }
         if(alertView.tag == 0 && buttonIndex == 0) {
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
             checkIfAccepted()

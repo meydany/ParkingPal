@@ -105,19 +105,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
 //        
         //view.addSubview((self.navigationController?.navigationBar)!)
         
-        
-        
-//        if(NSUserDefaults().boolForKey("Something")){
-//            
-//            print("first time")
-//            
-//            NSUserDefaults().setBool(true, forKey: "NotFirstTime")
-//        }
-        
         NSUserDefaults().setInteger(100, forKey: "points")
-        
-        
-        
         
         view.addSubview(HomeView(frame: self.view.frame))
         addPointsLabel()

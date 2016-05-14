@@ -83,9 +83,9 @@ class HomeView: UIView, GMSMapViewDelegate {
     
     func onUnParkClick() {
         if(UserLocation.currentLocation != nil) {
-           //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
+           (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
             
-            (UIApplication.sharedApplication().keyWindow?.rootViewController)!.navigationController?.pushViewController(UnparkFormView(), animated: false)
+            //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.navigationController?.pushViewController(UnparkFormView(), animated: false)
         }
     }
 
