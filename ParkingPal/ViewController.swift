@@ -110,7 +110,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         
         view.addSubview(HomeView(frame: self.view.frame))
         //addNavbar()
-        addPointsLabel()
+        //addPointsLabel()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -144,14 +144,11 @@ extension UIViewController{
         points.textColor = FlatWhite()
         points.sizeToFit()
         
-<<<<<<< HEAD
         points.font = UIFont(name: "Quicksand-Light", size: 30)
-=======
         let icon = UIImageView(image: resizeImage(UIImage(named: "ParkingPoints")!, newWidth: 25 * ScreenRatios.screenWidthRatio))
         icon.center = CGPoint(x: width * 9.4/10, y: height/18)
         
         view.addSubview(icon)
->>>>>>> 1f73c1f23c0912b22cdfda65102bfb9d6006cb6a
         view.addSubview(points)
     }
     
@@ -179,11 +176,8 @@ extension UIViewController{
         //        back.cornerRadius = 6
         //        back.shadowHeight = 3
         
-<<<<<<< HEAD
         back.center = CGPoint(x: width * 1.4/10, y: height/20)
-=======
         back.center = CGPoint(x: width * 1.2/10, y: height/20)
->>>>>>> 1f73c1f23c0912b22cdfda65102bfb9d6006cb6a
         back.buttonColor = FlatBlueDark()
         back.shadowColor = FlatSkyBlueDark()
         back.shadowHeight = 4;
@@ -210,13 +204,10 @@ extension UIViewController{
     }
     
     func goBack(){
-<<<<<<< HEAD
         //self.presentViewController(ViewController(), animated: true, completion: nil)
         //view.addSubview(HomeView())
-=======
-        self.removeFromParentViewController()
-        view.addSubview(HomeView())
->>>>>>> 1f73c1f23c0912b22cdfda65102bfb9d6006cb6a
+        //self.removeFromParentViewController()
+        //view.addSubview(HomeView())
         //self.removeFromParentViewController()
     }
 }

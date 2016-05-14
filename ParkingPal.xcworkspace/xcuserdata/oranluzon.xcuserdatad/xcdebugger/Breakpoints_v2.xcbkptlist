@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
             endingLineNumber = "207"
-            landmarkName = "checkIfAccepted()"
+            landmarkName = "alertView(_:clickedButtonAtIndex:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParkingPal/ViewController.swift"
-            timestampString = "484953020.984328"
+            timestampString = "484956544.35924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "addBackButton()"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "addPointsLabel()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
