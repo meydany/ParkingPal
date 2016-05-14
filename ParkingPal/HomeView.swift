@@ -25,6 +25,8 @@ class HomeView: UIView, GMSMapViewDelegate {
         
         let parkButton = FUIButton(frame: CGRect(x: self.frame.width/2 - self.frame.width*0.75/2, y: self.frame.height/2.3, width: self.frame.width*0.75, height: self.frame.height/5))
         
+        print(FlatBlueDark())
+        print(FlatBlue())
         parkButton.buttonColor = FlatSkyBlue()
         parkButton.shadowColor = FlatSkyBlueDark()
         parkButton.shadowHeight = 4;

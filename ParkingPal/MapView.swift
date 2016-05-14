@@ -10,12 +10,19 @@ import CoreLocation
 import GoogleMaps
 import FlatUIKit
 import ChameleonFramework
+import Parse
+import Bolts
+
 class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     
     var mapView: GMSMapView!
     var alertViews: [String: FUIAlertView]! = [:]
     var markerClicked: GMSMarker!
     var timer: NSTimer!
+    
+    var loader = UIActivityIndicatorView!()
+    
+    var acceptedAlertView = FUIAlertView!()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +39,28 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         mapView.delegate = self
         
         
+        acceptedAlertView = FUIAlertView()
+        acceptedAlertView.tag = 1
+        acceptedAlertView.delegate = self
         
+        acceptedAlertView.title = ""
         
+        acceptedAlertView.titleLabel.textColor = UIColor.cloudsColor()
+        acceptedAlertView.titleLabel.font = UIFont.boldFlatFontOfSize(20)
+        
+        acceptedAlertView.messageLabel.text = ""
+        acceptedAlertView.messageLabel.font = UIFont.flatFontOfSize(14)
+        acceptedAlertView.messageLabel.textColor = UIColor.cloudsColor()
+        
+        acceptedAlertView.backgroundOverlay.backgroundColor = UIColor.cloudsColor().colorWithAlphaComponent(0.8)
+        acceptedAlertView.alertContainer.backgroundColor = UIColor.midnightBlueColor()
+        acceptedAlertView.defaultButtonColor = FlatBlue()
+        acceptedAlertView.defaultButtonShadowColor = FlatBlueDark()
+        acceptedAlertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
+        acceptedAlertView.defaultButtonTitleColor = UIColor.whiteColor()
+        
+        acceptedAlertView.cancelButtonIndex = 0
+
         //the recieveed location
         //fetch frm parse
         
@@ -58,6 +85,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     
                     let alertView = FUIAlertView()
                     alertView.delegate = self
+                    alertView.tag = 0
                     
                     alertView.title = "\(UserLocation.locationAddress!)"
                     
@@ -113,18 +141,64 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     }
     
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
-        if (buttonIndex == 0){
-            print("requested")
+        print(buttonIndex)
+        if(alertView.tag == 0 && buttonIndex == 0) {
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
-         
+            checkIfAccepted()
             
+            loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width/4, height: self.view.frame.height/10))
+            loader.sizeToFit()
+            loader.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/4)
+            loader.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+            loader.color = FlatWatermelon()
+            //loader.startAnimating()
+            
+            //self.view.addSubview(loader)
+            
+            
+        }else if(alertView.tag == 1) {
+            print("Removed")
+            DBManager.removeUser(self.markerClicked.snippet!)
+            DBManager.removeRequest(self.markerClicked.snippet!)
         }
+        
     }
     
     func checkIfAccepted(){
-        DBManager.isRequestAccepted(markerClicked.snippet!, completion: { (result) in
-            print(result)
-        })
+        let pfQuery = PFQuery(className: "AcceptedRequests")
+        pfQuery.whereKey("Parker", equalTo: markerClicked.snippet! as AnyObject)
+        
+        pfQuery.findObjectsInBackgroundWithBlock {
+            (objects:[PFObject]?, error:NSError?) -> Void in
+            if error == nil {
+                print(objects![0].objectForKey("Accepted") as? Bool)
+                if(objects![0].objectForKey("Accepted") as? Bool == nil) {
+                    self.checkIfAccepted()
+                }else if((objects![0].objectForKey("Accepted") as! Bool) == true) {
+                    print("Hello")
+                    self.acceptedAlertView.title = "ACCEPTED"
+                    self.acceptedAlertView.messageLabel.text = "Your parking spot is waiting for you"
+                    self.acceptedAlertView.addButtonWithTitle("Drive")
+                    self.acceptedAlertView.show()
+                    
+                    self.loader.removeFromSuperview()
+                    
+                }else if ((objects![0].objectForKey("Accepted") as! Bool) == false) {
+                    print("Declined")
+                    self.acceptedAlertView.title = "DECLINED"
+                    self.acceptedAlertView.messageLabel.text = "Better luck next time"
+                    self.acceptedAlertView.addButtonWithTitle("Back")
+                    self.acceptedAlertView.show()
+                    
+                    self.loader.removeFromSuperview()
+                }
+
+            } else {
+                print("Not here")
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
