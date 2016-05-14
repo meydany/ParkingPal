@@ -20,6 +20,8 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     var markerClicked: GMSMarker!
     var timer: NSTimer!
     
+    var loader = UIActivityIndicatorView!()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,9 +35,6 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         
         mapView.myLocationEnabled = true
         mapView.delegate = self
-        
-        
-        
         
         //the recieveed location
         //fetch frm parse
@@ -61,6 +60,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     
                     let alertView = FUIAlertView()
                     alertView.delegate = self
+                    alertView.tag = 0
                     
                     alertView.title = "\(UserLocation.locationAddress!)"
                     
@@ -116,15 +116,37 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     }
     
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
-        if (buttonIndex == 0){
+        if(alertView.tag == 0 && buttonIndex == 0) {
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
             checkIfAccepted()
+            
+            loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width/4, height: self.view.frame.height/10))
+            loader.sizeToFit()
+            loader.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/4)
+            loader.alpha = 0
+            loader.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+            loader.color = FlatWatermelon()
+            
+            self.view.addSubview(loader)
+            
+            UIView.animateWithDuration(0.25, animations: {
+                self.loader.alpha = 1
+            }) { _ in
+                self.loader.startAnimating()
+                
+            }
+        }else if(alertView.tag == 1) {
+            print("Removed")
+            DBManager.removeUser(self.markerClicked.snippet!)
+            DBManager.removeRequest(self.markerClicked.snippet!)
         }
+        
     }
     
     func checkIfAccepted(){
         
         let alertView = FUIAlertView()
+        alertView.tag = 1
         alertView.delegate = self
         
         alertView.title = ""
@@ -143,38 +165,36 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         alertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
         alertView.defaultButtonTitleColor = UIColor.whiteColor()
         
-        alertView.addButtonWithTitle("")
         alertView.cancelButtonIndex = 0
         
         let pfQuery = PFQuery(className: "AcceptedRequests")
         pfQuery.whereKey("Parker", equalTo: markerClicked.snippet!)
         
         pfQuery.findObjectsInBackgroundWithBlock {
-            
             (objects:[PFObject]?, error:NSError?) -> Void in
             if error == nil {
-                if let objects = objects {
-                    for object in objects {
-                        if(object.objectForKey("Accepted") as? Bool == nil) {
-                            self.checkIfAccepted()
-                        }else if((object.objectForKey("Accepted") as! Bool) == true) {
-                            alertView.title = "ACCEPTED"
-                            alertView.messageLabel.text = "Your parking spot is waiting for you"
-                            alertView.addButtonWithTitle("Drive")
-                            alertView.show()
-                            
-                            
-                        }else if ((object.objectForKey("Accepted") as! Bool) == false) {
-                            print("Declined")
-                            alertView.title = "DECLINED"
-                            alertView.messageLabel.text = "Better luck next time"
-                            alertView.addButtonWithTitle("Back")
-                            alertView.show()
-                        }else {
-                            self.checkIfAccepted()
-                        }
-                    }
+                print(objects![0].objectForKey("Accepted") as? Bool)
+                if(objects![0].objectForKey("Accepted") as? Bool == nil) {
+                    self.checkIfAccepted()
+                }else if((objects![0].objectForKey("Accepted") as! Bool) == true) {
+                    print("Hello")
+                    alertView.title = "ACCEPTED"
+                    alertView.messageLabel.text = "Your parking spot is waiting for you"
+                    alertView.addButtonWithTitle("Drive")
+                    alertView.show()
+                    
+                    self.loader.removeFromSuperview()
+                    
+                }else if ((objects![0].objectForKey("Accepted") as! Bool) == false) {
+                    print("Declined")
+                    alertView.title = "DECLINED"
+                    alertView.messageLabel.text = "Better luck next time"
+                    alertView.addButtonWithTitle("Back")
+                    alertView.show()
+                    
+                    self.loader.removeFromSuperview()
                 }
+
             } else {
                 print("Not here")
                 // Log details of the failure
