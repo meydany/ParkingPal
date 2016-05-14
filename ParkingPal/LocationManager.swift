@@ -17,7 +17,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     
     var currentLocation:CLLocationCoordinate2D?
-    var locationAddress:String?
+    var locationAddress:String? = "75 W 205th St Bronx, NY 10468"
     
     class var manager: LocationManager {
         return UserLocation
@@ -48,11 +48,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func getAddress(location: CLLocationCoordinate2D) -> String {
+    func getAddress(location: CLLocationCoordinate2D, completion:(result: String)->Void) {
         GMSGeocoder().reverseGeocodeCoordinate(location) { (response, error) in
-            return "\(response!.firstResult()!.lines![0]) \(response!.firstResult()!.lines![1])"
+            completion(result: "\(response!.firstResult()!.lines![0]) \(response!.firstResult()!.lines![1])")
         }
-        return ""
     }
 }
 

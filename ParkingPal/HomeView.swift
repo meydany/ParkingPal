@@ -64,7 +64,9 @@ class HomeView: UIView, GMSMapViewDelegate {
         if(UserLocation.currentLocation != nil) {
             //DBManager.addUser("Yoli", location: UserLocation.currentLocation!, time: 10, price: 10)
             print("Location: \(UserLocation.currentLocation!)")
-            print("Address: \(UserLocation.locationAddress!)")
+            UserLocation.getAddress(UserLocation.currentLocation!, completion: { (result) in
+                print(result)
+            })
             (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: true, completion: nil)
         }
         //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: true, completion: nil)
