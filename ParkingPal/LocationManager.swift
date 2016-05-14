@@ -17,7 +17,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     
     var currentLocation:CLLocationCoordinate2D?
-    var locationAddress:String? = "75 W 205th St Bronx, NY 10468"
+    var locationAddress:String? = "75 W 205th St Bronx, NY 10468" //initial location, before location is found
     
     class var manager: LocationManager {
         return UserLocation
