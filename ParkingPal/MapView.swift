@@ -188,6 +188,23 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
             
         }else if(alertView.tag == 1) {
             print("Removed")
+//            MapManager().directionsUsingGoogle(from: UserLocation.currentLocation!, to: markerClicked.position, directionCompletionHandler: { (route, directionInformation, boundingRegion, error) in
+//                if(error != nil){
+//                        print(error)
+//                }else{
+//                    let layer = route
+//                    self.mapView.
+//                    if let web = self.mapView?{
+//                        
+//                        dispatch_async(dispatch_get_main_queue()) {
+//                            web.a(route!)
+//                            web.setVisibleMapRect(boundingRegion!, animated: true)
+//                        }
+//                        
+//                    }
+//                    
+//                }
+//            })
             //DBManager.removeUser(self.markerClicked.snippet!)
             //DBManager.removeRequest(self.markerClicked.snippet!)
         }

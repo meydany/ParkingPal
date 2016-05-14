@@ -139,10 +139,32 @@ extension UIViewController{
         let width = bounds.size.width
         let height = bounds.size.height
         
-        let points = BasicLabel(frame: self.view.frame , text: "\(NSUserDefaults().integerForKey("points"))", fontSize: 30, color: UIColor.blackColor() , position: CGPoint(x: width * 9/10, y: height/25))
+        let points = BasicLabel(frame: self.view.frame , text: "\(NSUserDefaults().integerForKey("points"))", fontSize: 30, color: UIColor.blackColor() , position: CGPoint(x: width * 7.9/10, y: height/33.8))
+        points.font = UIFont(name: "Quicksand-Light", size: 30 * ScreenRatios.screenWidthRatio)
+        points.textColor = FlatWhite()
+        points.sizeToFit()
         
+<<<<<<< HEAD
         points.font = UIFont(name: "Quicksand-Light", size: 30)
+=======
+        let icon = UIImageView(image: resizeImage(UIImage(named: "ParkingPoints")!, newWidth: 25 * ScreenRatios.screenWidthRatio))
+        icon.center = CGPoint(x: width * 9.4/10, y: height/18)
+        
+        view.addSubview(icon)
+>>>>>>> 1f73c1f23c0912b22cdfda65102bfb9d6006cb6a
         view.addSubview(points)
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     func addBackButton(){
@@ -157,7 +179,11 @@ extension UIViewController{
         //        back.cornerRadius = 6
         //        back.shadowHeight = 3
         
+<<<<<<< HEAD
         back.center = CGPoint(x: width * 1.4/10, y: height/20)
+=======
+        back.center = CGPoint(x: width * 1.2/10, y: height/20)
+>>>>>>> 1f73c1f23c0912b22cdfda65102bfb9d6006cb6a
         back.buttonColor = FlatBlueDark()
         back.shadowColor = FlatSkyBlueDark()
         back.shadowHeight = 4;
@@ -181,12 +207,16 @@ extension UIViewController{
         bar.backgroundColor = FlatSkyBlue()
         
         view.addSubview(bar)
-        
     }
     
     func goBack(){
+<<<<<<< HEAD
         //self.presentViewController(ViewController(), animated: true, completion: nil)
         //view.addSubview(HomeView())
+=======
+        self.removeFromParentViewController()
+        view.addSubview(HomeView())
+>>>>>>> 1f73c1f23c0912b22cdfda65102bfb9d6006cb6a
         //self.removeFromParentViewController()
     }
 }
