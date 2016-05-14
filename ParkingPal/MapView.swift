@@ -34,11 +34,6 @@ class MapView: UIViewController {
         var location: CLLocationCoordinate2D//get it
         
         
-        
-        marker.position = CLLocationCoordinate2DMake(location)
-        marker.appearAnimation = kGMSMarkerAnimationPop
-        m
-        
         // For later
         //marker.icon = UIImage(named: "flag_icon")
         
