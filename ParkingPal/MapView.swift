@@ -10,6 +10,9 @@ import CoreLocation
 import GoogleMaps
 import FlatUIKit
 import ChameleonFramework
+import Parse
+import Bolts
+
 class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     
     var mapView: GMSMapView!
@@ -114,17 +117,70 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if (buttonIndex == 0){
-            print("requested")
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
-         
-            
+            checkIfAccepted()
         }
     }
     
     func checkIfAccepted(){
-        DBManager.isRequestAccepted(markerClicked.snippet!, completion: { (result) in
-            print(result)
-        })
+        
+        let alertView = FUIAlertView()
+        alertView.delegate = self
+        
+        alertView.title = ""
+        
+        alertView.titleLabel.textColor = UIColor.cloudsColor()
+        alertView.titleLabel.font = UIFont.boldFlatFontOfSize(20)
+        
+        alertView.messageLabel.text = ""
+        alertView.messageLabel.font = UIFont.flatFontOfSize(14)
+        alertView.messageLabel.textColor = UIColor.cloudsColor()
+        
+        alertView.backgroundOverlay.backgroundColor = UIColor.cloudsColor().colorWithAlphaComponent(0.8)
+        alertView.alertContainer.backgroundColor = UIColor.midnightBlueColor()
+        alertView.defaultButtonColor = FlatBlue()
+        alertView.defaultButtonShadowColor = FlatBlueDark()
+        alertView.defaultButtonFont = UIFont.boldFlatFontOfSize(16)//[UIFont boldFlatFontOfSize:16];
+        alertView.defaultButtonTitleColor = UIColor.whiteColor()
+        
+        alertView.addButtonWithTitle("")
+        alertView.cancelButtonIndex = 0
+        
+        let pfQuery = PFQuery(className: "AcceptedRequests")
+        pfQuery.whereKey("Parker", equalTo: markerClicked.snippet!)
+        
+        pfQuery.findObjectsInBackgroundWithBlock {
+            
+            (objects:[PFObject]?, error:NSError?) -> Void in
+            if error == nil {
+                if let objects = objects {
+                    for object in objects {
+                        if(object.objectForKey("Accepted") as? Bool == nil) {
+                            self.checkIfAccepted()
+                        }else if((object.objectForKey("Accepted") as! Bool) == true) {
+                            alertView.title = "ACCEPTED"
+                            alertView.messageLabel.text = "Your parking spot is waiting for you"
+                            alertView.addButtonWithTitle("Drive")
+                            alertView.show()
+                            
+                            
+                        }else if ((object.objectForKey("Accepted") as! Bool) == false) {
+                            print("Declined")
+                            alertView.title = "DECLINED"
+                            alertView.messageLabel.text = "Better luck next time"
+                            alertView.addButtonWithTitle("Back")
+                            alertView.show()
+                        }else {
+                            self.checkIfAccepted()
+                        }
+                    }
+                }
+            } else {
+                print("Not here")
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

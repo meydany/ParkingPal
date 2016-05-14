@@ -42,34 +42,6 @@ class DBManager {
         pfObject.saveInBackground()
     }
     
-    static func isRequestAccepted(name: String, completion:(result:(Bool))->Void){
-       
-        let pfQuery = PFQuery(className: "AcceptedRequests")
-        pfQuery.whereKey("Parker", equalTo: name as AnyObject)
-        
-        pfQuery.findObjectsInBackgroundWithBlock {
-            (objects:[PFObject]?, error:NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let objects = objects {
-                    for object in objects {
-                        if ((object.objectForKey("Accepted") as! Bool) == true){
-                            completion(result: true)
-                        }
-                        else{
-                            completion(result: false)
-                        }
-                    }
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-            }
-        }
-        
-    }
-    
     static func add(name: String) {
         let pfQuery = PFQuery(className: "Users")
         pfQuery.whereKey("Name", equalTo: name as AnyObject)
@@ -127,6 +99,45 @@ class DBManager {
                     }
                 }
                 completion(result: nameArray)
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+    }
+    
+    static func removeUser(name: String) {
+        let pfQuery = PFQuery(className: "Users")
+        pfQuery.whereKey("Name", equalTo: name)
+        
+        pfQuery.findObjectsInBackgroundWithBlock {
+            (objects:[PFObject]?, error:NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                for object in objects! {
+                    object.deleteInBackground()
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+    }
+    
+    static func removeRequest(name: String) {
+        let pfQuery = PFQuery(className: "AcceptedRequest")
+        pfQuery.whereKey("Parker", equalTo: name)
+        
+        pfQuery.findObjectsInBackgroundWithBlock {
+            (objects:[PFObject]?, error:NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                for object in objects! {
+                    object.deleteInBackground()
+                }
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
