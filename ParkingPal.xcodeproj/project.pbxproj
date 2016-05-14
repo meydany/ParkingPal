@@ -17,6 +17,7 @@
 		860703A11CE6D7DD0031A6E6 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8607039A1CE6D7DD0031A6E6 /* Quicksand-Regular.otf */; };
 		860703A31CE6D9DA0031A6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860703A21CE6D9DA0031A6E6 /* Main.storyboard */; };
 		8622CF031CE6A0A50041C181 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622CF021CE6A0A50041C181 /* HomeView.swift */; };
+		868584BC1CE757CA00DAB3CD /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868584BB1CE757CA00DAB3CD /* DBManager.swift */; };
 		869741E71CE6995900A3F4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869741E61CE6995900A3F4B4 /* AppDelegate.swift */; };
 		869741E91CE6995900A3F4B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869741E81CE6995900A3F4B4 /* ViewController.swift */; };
 		869741EE1CE6995900A3F4B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 869741ED1CE6995900A3F4B4 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		8607039A1CE6D7DD0031A6E6 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		860703A21CE6D9DA0031A6E6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8622CF021CE6A0A50041C181 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		868584BB1CE757CA00DAB3CD /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		869741E31CE6995900A3F4B4 /* ParkingPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869741E61CE6995900A3F4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869741E81CE6995900A3F4B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				8622CF021CE6A0A50041C181 /* HomeView.swift */,
 				86B60D781CE6B3FD002A796D /* LocationManager.swift */,
 				09D362911CE6F68D00BB9ECF /* MapView.swift */,
+				868584BB1CE757CA00DAB3CD /* DBManager.swift */,
 			);
 			name = Code;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09D362921CE6F68D00BB9ECF /* MapView.swift in Sources */,
+				868584BC1CE757CA00DAB3CD /* DBManager.swift in Sources */,
 				86B60D791CE6B3FD002A796D /* LocationManager.swift in Sources */,
 				8622CF031CE6A0A50041C181 /* HomeView.swift in Sources */,
 				869741E91CE6995900A3F4B4 /* ViewController.swift in Sources */,

@@ -9,38 +9,20 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 
-class MapView: UIViewController, CLLocationManagerDelegate {
+class MapView: UIViewController {
     
-    let locationManager = CLLocationManager()
     var mapView: GMSMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let startingLocation = UserLocation.currentLocation
         
-        
-        // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-        
-        let startingLocation = locationManager.location!.coordinate
-        
-        let camera = GMSCameraPosition.cameraWithLatitude(startingLocation.latitude ,longitude: startingLocation.longitude, zoom: 15)
+        let camera = GMSCameraPosition.cameraWithLatitude(startingLocation!.latitude ,longitude: startingLocation!.longitude, zoom: 15)
         mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
         mapView.mapType = kGMSTypeNormal
         
         mapView.myLocationEnabled = true
-        
         
         self.view = mapView
         
@@ -58,12 +40,6 @@ class MapView: UIViewController, CLLocationManagerDelegate {
         marker.map = mapView
         
         
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //mapView.animateToLocation(locValue)
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     override func didReceiveMemoryWarning() {
