@@ -60,9 +60,10 @@ class HomeView: UIView, GMSMapViewDelegate {
 
     
     func onParkClick() {
-        (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: false, completion: nil)
         if(UserLocation.currentLocation != nil) {
             print("Location: \(UserLocation.currentLocation!)")
+            //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: false, completion: nil)
+            
         }
     }
     
