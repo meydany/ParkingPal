@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09D362921CE6F68D00BB9ECF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D362911CE6F68D00BB9ECF /* MapView.swift */; };
+		8607039B1CE6D7DD0031A6E6 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703941CE6D7DD0031A6E6 /* Quicksand_Dash.otf */; };
+		8607039C1CE6D7DD0031A6E6 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703951CE6D7DD0031A6E6 /* Quicksand-Bold.otf */; };
+		8607039D1CE6D7DD0031A6E6 /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703961CE6D7DD0031A6E6 /* Quicksand-BoldItalic.otf */; };
+		8607039E1CE6D7DD0031A6E6 /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703971CE6D7DD0031A6E6 /* Quicksand-Italic.otf */; };
+		8607039F1CE6D7DD0031A6E6 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703981CE6D7DD0031A6E6 /* Quicksand-Light.otf */; };
+		860703A01CE6D7DD0031A6E6 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703991CE6D7DD0031A6E6 /* Quicksand-LightItalic.otf */; };
+		860703A11CE6D7DD0031A6E6 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8607039A1CE6D7DD0031A6E6 /* Quicksand-Regular.otf */; };
+		860703A31CE6D9DA0031A6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860703A21CE6D9DA0031A6E6 /* Main.storyboard */; };
+		8622CF031CE6A0A50041C181 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622CF021CE6A0A50041C181 /* HomeView.swift */; };
+		869741E71CE6995900A3F4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869741E61CE6995900A3F4B4 /* AppDelegate.swift */; };
+		869741E91CE6995900A3F4B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869741E81CE6995900A3F4B4 /* ViewController.swift */; };
+		869741EE1CE6995900A3F4B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 869741ED1CE6995900A3F4B4 /* Assets.xcassets */; };
+		86B60D791CE6B3FD002A796D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B60D781CE6B3FD002A796D /* LocationManager.swift */; };
+		951A1716DFE33DFB22604B41 /* Pods_ParkingPal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFD72578399C51C823A6C5C /* Pods_ParkingPal.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09D362911CE6F68D00BB9ECF /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		110DF12B0A7921CF5F115836 /* Pods-ParkingPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingPal/Pods-ParkingPal.release.xcconfig"; sourceTree = "<group>"; };
+		860703941CE6D7DD0031A6E6 /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Dash.otf; sourceTree = "<group>"; };
+		860703951CE6D7DD0031A6E6 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
+		860703961CE6D7DD0031A6E6 /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
+		860703971CE6D7DD0031A6E6 /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Italic.otf"; sourceTree = "<group>"; };
+		860703981CE6D7DD0031A6E6 /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.otf"; sourceTree = "<group>"; };
+		860703991CE6D7DD0031A6E6 /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
+		8607039A1CE6D7DD0031A6E6 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
+		860703A21CE6D9DA0031A6E6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8622CF021CE6A0A50041C181 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		869741E31CE6995900A3F4B4 /* ParkingPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		869741E61CE6995900A3F4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		869741E81CE6995900A3F4B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		869741ED1CE6995900A3F4B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		869741F21CE6995900A3F4B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86B60D781CE6B3FD002A796D /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		9AFD72578399C51C823A6C5C /* Pods_ParkingPal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkingPal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6AEB092D87E13B3993CE086 /* Pods-ParkingPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingPal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingPal/Pods-ParkingPal.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		869741E01CE6995900A3F4B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				951A1716DFE33DFB22604B41 /* Pods_ParkingPal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1138026BA812791D4FDF9B65 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6AEB092D87E13B3993CE086 /* Pods-ParkingPal.debug.xcconfig */,
+				110DF12B0A7921CF5F115836 /* Pods-ParkingPal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		463F38B52EFE8919041C38C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AFD72578399C51C823A6C5C /* Pods_ParkingPal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8607038B1CE6D77F0031A6E6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8607038C1CE6D7860031A6E6 /* Quicksand */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		8607038C1CE6D7860031A6E6 /* Quicksand */ = {
+			isa = PBXGroup;
+			children = (
+				860703941CE6D7DD0031A6E6 /* Quicksand_Dash.otf */,
+				860703951CE6D7DD0031A6E6 /* Quicksand-Bold.otf */,
+				860703961CE6D7DD0031A6E6 /* Quicksand-BoldItalic.otf */,
+				860703971CE6D7DD0031A6E6 /* Quicksand-Italic.otf */,
+				860703981CE6D7DD0031A6E6 /* Quicksand-Light.otf */,
+				860703991CE6D7DD0031A6E6 /* Quicksand-LightItalic.otf */,
+				8607039A1CE6D7DD0031A6E6 /* Quicksand-Regular.otf */,
+			);
+			name = Quicksand;
+			sourceTree = "<group>";
+		};
+		869741DA1CE6995900A3F4B4 = {
+			isa = PBXGroup;
+			children = (
+				869741E51CE6995900A3F4B4 /* ParkingPal */,
+				869741E41CE6995900A3F4B4 /* Products */,
+				1138026BA812791D4FDF9B65 /* Pods */,
+				463F38B52EFE8919041C38C3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		869741E41CE6995900A3F4B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				869741E31CE6995900A3F4B4 /* ParkingPal.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		869741E51CE6995900A3F4B4 /* ParkingPal */ = {
+			isa = PBXGroup;
+			children = (
+				8607038B1CE6D77F0031A6E6 /* Fonts */,
+				86B60D721CE6A27D002A796D /* Code */,
+				86B60D731CE6A294002A796D /* Misc */,
+			);
+			path = ParkingPal;
+			sourceTree = "<group>";
+		};
+		86B60D721CE6A27D002A796D /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				869741E61CE6995900A3F4B4 /* AppDelegate.swift */,
+				869741E81CE6995900A3F4B4 /* ViewController.swift */,
+				8622CF021CE6A0A50041C181 /* HomeView.swift */,
+				86B60D781CE6B3FD002A796D /* LocationManager.swift */,
+				09D362911CE6F68D00BB9ECF /* MapView.swift */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
+		86B60D731CE6A294002A796D /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				860703A21CE6D9DA0031A6E6 /* Main.storyboard */,
+				869741ED1CE6995900A3F4B4 /* Assets.xcassets */,
+				869741F21CE6995900A3F4B4 /* Info.plist */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		869741E21CE6995900A3F4B4 /* ParkingPal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 869741F51CE6995900A3F4B4 /* Build configuration list for PBXNativeTarget "ParkingPal" */;
+			buildPhases = (
+				329297C05080DA92821AC3AF /* 📦 Check Pods Manifest.lock */,
+				869741DF1CE6995900A3F4B4 /* Sources */,
+				869741E01CE6995900A3F4B4 /* Frameworks */,
+				869741E11CE6995900A3F4B4 /* Resources */,
+				FB320FD9C3329FCE29FDEB56 /* 📦 Embed Pods Frameworks */,
+				003B8D049DBD171B72AEAFFE /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParkingPal;
+			productName = ParkingPal;
+			productReference = 869741E31CE6995900A3F4B4 /* ParkingPal.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		869741DB1CE6995900A3F4B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = AtomHacks;
+				TargetAttributes = {
+					869741E21CE6995900A3F4B4 = {
+						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 869741DE1CE6995900A3F4B4 /* Build configuration list for PBXProject "ParkingPal" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 869741DA1CE6995900A3F4B4;
+			productRefGroup = 869741E41CE6995900A3F4B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				869741E21CE6995900A3F4B4 /* ParkingPal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		869741E11CE6995900A3F4B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				869741EE1CE6995900A3F4B4 /* Assets.xcassets in Resources */,
+				8607039F1CE6D7DD0031A6E6 /* Quicksand-Light.otf in Resources */,
+				8607039D1CE6D7DD0031A6E6 /* Quicksand-BoldItalic.otf in Resources */,
+				860703A11CE6D7DD0031A6E6 /* Quicksand-Regular.otf in Resources */,
+				8607039B1CE6D7DD0031A6E6 /* Quicksand_Dash.otf in Resources */,
+				8607039C1CE6D7DD0031A6E6 /* Quicksand-Bold.otf in Resources */,
+				860703A31CE6D9DA0031A6E6 /* Main.storyboard in Resources */,
+				860703A01CE6D7DD0031A6E6 /* Quicksand-LightItalic.otf in Resources */,
+				8607039E1CE6D7DD0031A6E6 /* Quicksand-Italic.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		003B8D049DBD171B72AEAFFE /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkingPal/Pods-ParkingPal-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		329297C05080DA92821AC3AF /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB320FD9C3329FCE29FDEB56 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkingPal/Pods-ParkingPal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		869741DF1CE6995900A3F4B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09D362921CE6F68D00BB9ECF /* MapView.swift in Sources */,
+				86B60D791CE6B3FD002A796D /* LocationManager.swift in Sources */,
+				8622CF031CE6A0A50041C181 /* HomeView.swift in Sources */,
+				869741E91CE6995900A3F4B4 /* ViewController.swift in Sources */,
+				869741E71CE6995900A3F4B4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		869741F31CE6995900A3F4B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		869741F41CE6995900A3F4B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		869741F61CE6995900A3F4B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6AEB092D87E13B3993CE086 /* Pods-ParkingPal.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ParkingPal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.atomhacks.ParkingPal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		869741F71CE6995900A3F4B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 110DF12B0A7921CF5F115836 /* Pods-ParkingPal.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ParkingPal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.atomhacks.ParkingPal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		869741DE1CE6995900A3F4B4 /* Build configuration list for PBXProject "ParkingPal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				869741F31CE6995900A3F4B4 /* Debug */,
+				869741F41CE6995900A3F4B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		869741F51CE6995900A3F4B4 /* Build configuration list for PBXNativeTarget "ParkingPal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				869741F61CE6995900A3F4B4 /* Debug */,
+				869741F71CE6995900A3F4B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 869741DB1CE6995900A3F4B4 /* Project object */;
+}
