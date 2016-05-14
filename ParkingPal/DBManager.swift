@@ -37,7 +37,7 @@ class DBManager {
         pfObject.setObject(yourName, forKey: "Requester")
         pfObject.setObject(theirName, forKey: "Parker")
         pfObject.setObject(coordLocation, forKey: "Location")
-        pfObject.setObject(false, forKey: "Accepted")
+        //pfObject.setObject(false, forKey: "Accepted")
         
         pfObject.saveInBackground()
     }

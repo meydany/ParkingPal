@@ -15,6 +15,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     var mapView: GMSMapView!
     var alertViews: [String: FUIAlertView]! = [:]
     var markerClicked: GMSMarker!
+    var timer: NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,8 +116,15 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         if (buttonIndex == 0){
             print("requested")
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
+         
             
         }
+    }
+    
+    func checkIfAccepted(){
+        DBManager.isRequestAccepted(markerClicked.snippet!, completion: { (result) in
+            print(result)
+        })
     }
     
     override func didReceiveMemoryWarning() {
