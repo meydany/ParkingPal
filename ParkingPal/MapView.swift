@@ -58,7 +58,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     let alertView = FUIAlertView()
                     alertView.delegate = self
                     
-                    alertView.title = "\(UserLocation.locationAddress![0]), \(UserLocation.locationAddress![1])"
+                    alertView.title = "\(UserLocation.locationAddress!)"
                     
                     alertView.titleLabel.textColor = UIColor.cloudsColor()
                     alertView.titleLabel.font = UIFont.boldFlatFontOfSize(16)
