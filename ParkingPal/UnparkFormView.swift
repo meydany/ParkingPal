@@ -193,6 +193,7 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if(buttonIndex == 0) {
             self.requestObject.setObject(true, forKey: "Accepted")
+            self.presentViewController(PostAcceptanceParker(), animated: true, completion: nil)
         }else if (buttonIndex == 1) {
             self.requestObject.setObject(false, forKey: "Accepted")
         }

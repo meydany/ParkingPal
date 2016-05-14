@@ -177,7 +177,6 @@ extension UIViewController{
         //        back.shadowHeight = 3
         
         back.center = CGPoint(x: width * 1.4/10, y: height/20)
-        back.center = CGPoint(x: width * 1.2/10, y: height/20)
         back.buttonColor = FlatBlueDark()
         back.shadowColor = FlatSkyBlueDark()
         back.shadowHeight = 4;
