@@ -62,6 +62,7 @@ class HomeView: UIView, GMSMapViewDelegate {
     
     func onParkClick() {
         if(UserLocation.currentLocation != nil) {
+            //DBManager.addUser("Yoli", location: UserLocation.currentLocation!, time: 10, price: 10)
             print("Location: \(UserLocation.currentLocation!)")
             print("Address: \(UserLocation.locationAddress!)")
             (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: true, completion: nil)
@@ -70,8 +71,9 @@ class HomeView: UIView, GMSMapViewDelegate {
     }
     
     func onUnParkClick() {
-        (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
-        
+        if(UserLocation.currentLocation != nil) {
+           (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

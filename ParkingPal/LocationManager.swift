@@ -17,7 +17,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     
     var currentLocation:CLLocationCoordinate2D?
-    var locationAddress:[String]?
+    var locationAddress:String?
     
     class var manager: LocationManager {
         return UserLocation
@@ -44,10 +44,16 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         
         GMSGeocoder().reverseGeocodeCoordinate(manager.location!.coordinate) { (response, error) in
-            self.locationAddress = response?.firstResult()?.lines
+            self.locationAddress = "\(response!.firstResult()!.lines![0]) \(response!.firstResult()!.lines![1])"
         }
     }
 
+    func getAddress(location: CLLocationCoordinate2D) -> String {
+        GMSGeocoder().reverseGeocodeCoordinate(location) { (response, error) in
+            return "\(response!.firstResult()!.lines![0]) \(response!.firstResult()!.lines![1])"
+        }
+        return ""
+    }
 }
 
 let UserLocation = LocationManager()
