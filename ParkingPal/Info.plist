@@ -20,10 +20,30 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>By accessing your location, you can locate local app users</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Quicksand-Dash.otf</string>
+		<string>Quicksand-Bold.otf</string>
+		<string>Quicksand-BoldItalic.otf</string>
+		<string>Quicksand-Italic.otf</string>
+		<string>Quicksand-Light.otf</string>
+		<string>Quicksand-LighItalic.otf</string>
+		<string>Quicksand-Regular.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -39,29 +59,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Quicksand-Dash.otf</string>
-		<string>Quicksand-Bold.otf</string>
-		<string>Quicksand-BoldItalic.otf</string>
-		<string>Quicksand-Italic.otf</string>
-		<string>Quicksand-Light.otf</string>
-		<string>Quicksand-LighItalic.otf</string>
-		<string>Quicksand-Regular.otf</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>googlechromes</string>
-		<string>comgooglemaps</string>
-	</array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <!--Connect to anything (this is probably BAD)-->
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
 </dict>
 </plist>

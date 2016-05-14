@@ -11,12 +11,37 @@ import Parse
 import GoogleMaps
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
 
     var window: UIWindow?
-
+    var navController: UINavigationController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+//        UINavigationController *navCtrlr = [[UINavigationController alloc]initWithRootViewController:self.viewController];
+//        [self.window setRootViewController:navCtrlr];
+//        navCtrlr.delegate = self;
+//        navCtrlr.navigationBarHidden = YES;
+//        let navCtlr = UINavigationController(rootViewController: (UIApplication.sharedApplication().keyWindow?.rootViewController)!)
+//        
+//        
+//        navCtlr.delegate = self
+//        navCtlr.navigationBarHidden = true
+        
+//        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        let FVC = ViewController(nibName: nil, bundle: nil)
+//        self.navController = UINavigationController(rootViewController: FVC)
+//        self.window?.rootViewController = self.navController
+//        self.window?.backgroundColor = UIColor.clearColor()
+//        self.window?.makeKeyAndVisible()
+//        
+//        
+//        let vc = ViewController()
+//        
+//        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        navController = UINavigationController(rootViewController: vc)
+//        self.window!.rootViewController = navController
+//        self.window?.makeKeyAndVisible()
         
         //Setup Parse
         Parse.enableLocalDatastore()

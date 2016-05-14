@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		095DE3131CE7A5F400BD6800 /* BasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DE3121CE7A5F400BD6800 /* BasicLabel.swift */; };
 		09D362921CE6F68D00BB9ECF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D362911CE6F68D00BB9ECF /* MapView.swift */; };
 		8607039B1CE6D7DD0031A6E6 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703941CE6D7DD0031A6E6 /* Quicksand_Dash.otf */; };
 		8607039C1CE6D7DD0031A6E6 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860703951CE6D7DD0031A6E6 /* Quicksand-Bold.otf */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		095DE3121CE7A5F400BD6800 /* BasicLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
 		09D362911CE6F68D00BB9ECF /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		110DF12B0A7921CF5F115836 /* Pods-ParkingPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingPal/Pods-ParkingPal.release.xcconfig"; sourceTree = "<group>"; };
 		860703941CE6D7DD0031A6E6 /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Dash.otf; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				869741E61CE6995900A3F4B4 /* AppDelegate.swift */,
 				86B60D781CE6B3FD002A796D /* LocationManager.swift */,
 				868584BB1CE757CA00DAB3CD /* DBManager.swift */,
+				095DE3121CE7A5F400BD6800 /* BasicLabel.swift */,
 			);
 			name = Code;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				868584BC1CE757CA00DAB3CD /* DBManager.swift in Sources */,
 				86B60D791CE6B3FD002A796D /* LocationManager.swift in Sources */,
 				8622CF031CE6A0A50041C181 /* HomeView.swift in Sources */,
+				095DE3131CE7A5F400BD6800 /* BasicLabel.swift in Sources */,
 				869741E91CE6995900A3F4B4 /* ViewController.swift in Sources */,
 				869741E71CE6995900A3F4B4 /* AppDelegate.swift in Sources */,
 			);

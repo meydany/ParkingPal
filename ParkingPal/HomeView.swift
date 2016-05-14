@@ -19,6 +19,7 @@ class HomeView: UIView, GMSMapViewDelegate {
     
     var mapView: GMSMapView!
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -58,6 +59,10 @@ class HomeView: UIView, GMSMapViewDelegate {
         self.addSubview(parkButton)
         self.addSubview(unParkButton)
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     
     func onParkClick() {
@@ -76,12 +81,10 @@ class HomeView: UIView, GMSMapViewDelegate {
     
     func onUnParkClick() {
         if(UserLocation.currentLocation != nil) {
-           (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
+           //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
+            
+            (UIApplication.sharedApplication().keyWindow?.rootViewController)!.navigationController?.pushViewController(UnparkFormView(), animated: false)
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
 }
