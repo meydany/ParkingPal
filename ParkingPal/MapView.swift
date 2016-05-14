@@ -18,10 +18,12 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     var mapView: GMSMapView!
     var alertViews: [String: FUIAlertView]! = [:]
     var markerClicked: GMSMarker!
-    
+    var timer: NSTimer!
     var loader = UIActivityIndicatorView!()
-    
+    var price: Int!
     var acceptedAlertView = FUIAlertView!()
+    
+    var methodRun = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,6 +134,10 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         //marker.map = mapView
         
         self.view = mapView
+        
+        addNavbar()
+        addPointsLabel()
+        addBackButton()
     }
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
@@ -144,12 +150,17 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         print(buttonIndex)
         DBManager.getUser(self.markerClicked.snippet!) { (result) in
-            NSUserDefaults().setInteger(NSUserDefaults().integerForKey("points") - result.price, forKey: "points")
+            self.price = result.price
             print(NSUserDefaults().integerForKey("points"))
         }
         if(alertView.tag == 0 && buttonIndex == 0) {
             DBManager.addAcceptedRequest(DBManager.yourName, theirName: markerClicked.snippet!, location: markerClicked.position)
-            checkIfAccepted()
+            //checkIfAccepted()
+            //let timer = NSTimer(timeInterval: 0.25, target: self, selector: "checkIfAccepted", userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("checkIfAccepted"), userInfo: nil, repeats: true)
+            timer.fire()
+            //helloWorldTimer.fire()
+            
             
             loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width/4, height: self.view.frame.height/10))
             loader.sizeToFit()
@@ -163,40 +174,81 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
             
         }else if(alertView.tag == 1) {
             print("Removed")
-            DBManager.removeUser(self.markerClicked.snippet!)
-            DBManager.removeRequest(self.markerClicked.snippet!)
+            //DBManager.removeUser(self.markerClicked.snippet!)
+            //DBManager.removeRequest(self.markerClicked.snippet!)
         }
         
     }
     
     func checkIfAccepted(){
+        //print("runing")
         let pfQuery = PFQuery(className: "AcceptedRequests")
         pfQuery.whereKey("Parker", equalTo: markerClicked.snippet! as AnyObject)
         
         pfQuery.findObjectsInBackgroundWithBlock {
             (objects:[PFObject]?, error:NSError?) -> Void in
             if error == nil {
-                print(objects![0].objectForKey("Accepted") as? Bool)
-                if(objects![0].objectForKey("Accepted") as? Bool == nil) {
-                    self.checkIfAccepted()
-                }else if((objects![0].objectForKey("Accepted") as! Bool) == true) {
-                    print("Hello")
-                    self.acceptedAlertView.title = "ACCEPTED"
-                    self.acceptedAlertView.messageLabel.text = "Your parking spot is waiting for you"
-                    self.acceptedAlertView.addButtonWithTitle("Drive")
-                    self.acceptedAlertView.show()
-                    
-                    self.loader.removeFromSuperview()
-                    
-                }else if ((objects![0].objectForKey("Accepted") as! Bool) == false) {
-                    print("Declined")
-                    self.acceptedAlertView.title = "DECLINED"
-                    self.acceptedAlertView.messageLabel.text = "Better luck next time"
-                    self.acceptedAlertView.addButtonWithTitle("Back")
-                    self.acceptedAlertView.show()
-                    
-                    self.loader.removeFromSuperview()
+                for object in objects!{
+                    //print("\t\t\(object.objectForKey("Accepted") as? Bool)")
+                    if(object.objectForKey("Accepted") as? Bool == nil) {
+                        //self.checkIfAccepted()
+                        //return
+                    }else if((object.objectForKey("Accepted") as! Bool) == true) {
+                        print("Hello")
+                        self.acceptedAlertView.title = "ACCEPTED"
+                        self.acceptedAlertView.messageLabel.text = "Your parking spot is waiting for you"
+                        self.acceptedAlertView.addButtonWithTitle("Drive")
+                        if(self.acceptedAlertView.buttons.count > 1){
+                            for _ in 0..<self.acceptedAlertView.buttons.count - 1
+                            {
+                                self.acceptedAlertView.buttons.removeLastObject()
+                            }
+                        }
+                        
+                        self.acceptedAlertView.show()
+                        
+                        self.loader.removeFromSuperview()
+                        self.timer.invalidate()
+                        
+                        self.runOnce()
+                        
+                        print(NSUserDefaults().integerForKey("points"))
+                    }else if ((object.objectForKey("Accepted") as! Bool) == false) {
+                        print("Declined")
+                        self.acceptedAlertView.title = "DECLINED"
+                        self.acceptedAlertView.messageLabel.text = "Better luck next time"
+                        self.acceptedAlertView.addButtonWithTitle("Back")
+                        self.acceptedAlertView.show()
+                        
+                        self.loader.removeFromSuperview()
+                        self.timer.invalidate()
+                    }
                 }
+                //print("Checking")
+                
+                
+//                if(objects![0].objectForKey("Accepted") as? Bool == nil) {
+//                    //self.checkIfAccepted()
+//                    return
+//                }else if((objects![0].objectForKey("Accepted") as! Bool) == true) {
+//                    print("Hello")
+//                    self.acceptedAlertView.title = "ACCEPTED"
+//                    self.acceptedAlertView.messageLabel.text = "Your parking spot is waiting for you"
+//                    self.acceptedAlertView.addButtonWithTitle("Drive")
+//                    self.acceptedAlertView.show()
+//                    
+//                    self.loader.removeFromSuperview()
+//                    
+//                }else if ((objects![0].objectForKey("Accepted") as! Bool) == false) {
+//                    print("Declined")
+//                    self.acceptedAlertView.title = "DECLINED"
+//                    self.acceptedAlertView.messageLabel.text = "Better luck next time"
+//                    self.acceptedAlertView.addButtonWithTitle("Back")
+//                    self.acceptedAlertView.show()
+//                    
+//                    self.loader.removeFromSuperview()
+//                }
+                //print("WHAT")
 
             } else {
                 print("Not here")
@@ -206,10 +258,22 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         }
     }
     
+    func runOnce(){
+        if (!methodRun){
+            NSUserDefaults().setInteger(NSUserDefaults().integerForKey("points") - price, forKey: "points")
+            DBManager.removeUser(markerClicked.snippet!)
+            DBManager.removeRequest(markerClicked.snippet!)
+            methodRun = true
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
 }

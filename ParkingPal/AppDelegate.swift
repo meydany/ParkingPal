@@ -43,6 +43,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 //        self.window!.rootViewController = navController
 //        self.window?.makeKeyAndVisible()
         
+//        var nav = UINavigationController()
+//        var mainWiew = ViewController(nibName: nil, bundle: nil)
+//        nav.viewControllers = [mainWiew]
+//        nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+//        
+//        UINavigationBar.appearance().barTintColor = UIColor.blueColor()
+//        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+//        
+//        //White status font
+//        UINavigationBar.appearance().barStyle = UIBarStyle.BlackTranslucent
+//        
+//        self.window!.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
+//        
+//        //Black status background
+//        var statusBar = UIView()
+//        statusBar.frame = CGRectMake(0, 0, 320, 20)
+//        statusBar.backgroundColor = UIColor.blackColor()
+//        self.window?.rootViewController?.view.addSubview(statusBar)
+        
         //Setup Parse
         Parse.enableLocalDatastore()
         Parse.setApplicationId("o3bRoOmKK99gRMW3niQOV3SG39pl8y4XFwP4t77J", clientKey: "xeW88DhJFjBBokqetSZoiFnnfiBsF5ZtvQCQZoHQ")

@@ -25,8 +25,8 @@ class HomeView: UIView, GMSMapViewDelegate {
         
         let parkButton = FUIButton(frame: CGRect(x: self.frame.width/2 - self.frame.width*0.75/2, y: self.frame.height/2.3, width: self.frame.width*0.75, height: self.frame.height/5))
         
-        print(FlatBlueDark())
-        print(FlatBlue())
+        //print(FlatBlueDark())
+        //print(FlatBlue())
         parkButton.buttonColor = FlatSkyBlue()
         parkButton.shadowColor = FlatSkyBlueDark()
         parkButton.shadowHeight = 4;
@@ -60,6 +60,7 @@ class HomeView: UIView, GMSMapViewDelegate {
         
         self.addSubview(parkButton)
         self.addSubview(unParkButton)
+        UIApplication.sharedApplication().keyWindow?.rootViewController!.addPointsLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +86,7 @@ class HomeView: UIView, GMSMapViewDelegate {
         if(UserLocation.currentLocation != nil) {
            (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
             
-            //(UIApplication.sharedApplication().keyWindow?.rootViewController)!.navigationController?.pushViewController(UnparkFormView(), animated: false)
+            //(UIApplication.sharedApplication().keyWindow?.rootViewController)?.navigationController?.pushViewController(UnparkFormView(), animated: true)
         }
     }
 

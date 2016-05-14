@@ -101,6 +101,9 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         self.view.addSubview(submitButton)
         
         self.view.addSubview(loader)
+        addNavbar()
+        addPointsLabel()
+        addBackButton()
     }
     
     func submit() {
