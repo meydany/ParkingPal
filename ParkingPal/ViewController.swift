@@ -110,7 +110,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         
         view.addSubview(HomeView(frame: self.view.frame))
         //addNavbar()
-        //addPointsLabel()
+        addPointsLabel()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -141,6 +141,7 @@ extension UIViewController{
         
         let points = BasicLabel(frame: self.view.frame , text: "\(NSUserDefaults().integerForKey("points"))", fontSize: 30, color: UIColor.blackColor() , position: CGPoint(x: width * 9/10, y: height/25))
         
+        points.font = UIFont(name: "Quicksand-Light", size: 30)
         view.addSubview(points)
     }
     
@@ -149,16 +150,16 @@ extension UIViewController{
         let width = bounds.size.width
         let height = bounds.size.height
         
-        let back = FUIButton(frame: CGRect(x: 0, y: 0, width: width/5, height: height/14))
+        let back = FUIButton(frame: CGRect(x: 0, y: 0, width: width/4, height: height/14))
         //        back.center = CGPoint(x: width/2, y: height/2)
         //        back.buttonColor = FlatWatermelon()
         //        back.shadowColor = FlatWatermelon()
         //        back.cornerRadius = 6
         //        back.shadowHeight = 3
         
-        back.center = CGPoint(x: width * 1.2/10, y: height/20)
-        back.buttonColor = FlatWatermelon()
-        back.shadowColor = FlatRed()
+        back.center = CGPoint(x: width * 1.4/10, y: height/20)
+        back.buttonColor = FlatBlueDark()
+        back.shadowColor = FlatSkyBlueDark()
         back.shadowHeight = 4;
         back.cornerRadius = 6.0;
         back.setTitle("PARK", forState: UIControlState.Normal)
@@ -184,6 +185,7 @@ extension UIViewController{
     }
     
     func goBack(){
+        //self.presentViewController(ViewController(), animated: true, completion: nil)
         //view.addSubview(HomeView())
         //self.removeFromParentViewController()
     }

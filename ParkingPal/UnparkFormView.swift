@@ -185,6 +185,10 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         }
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func alertView(alertView: FUIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if(buttonIndex == 0) {
             self.requestObject.setObject(true, forKey: "Accepted")

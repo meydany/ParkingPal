@@ -73,7 +73,7 @@ class HomeView: UIView, GMSMapViewDelegate {
             //DBManager.addUser("Yoli", location: UserLocation.currentLocation!, time: 10, price: 10)
             print("Location: \(UserLocation.currentLocation!)")
             print("Address: \(UserLocation.locationAddress!)")
-            print("got here")
+            //print("got here")
             UserLocation.getAddress(UserLocation.currentLocation!, completion: { (result) in
                 print(result)
             })

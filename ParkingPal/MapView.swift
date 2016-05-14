@@ -93,7 +93,20 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     alertView.titleLabel.textColor = UIColor.cloudsColor()
                     alertView.titleLabel.font = UIFont.boldFlatFontOfSize(16)
                     
-                    alertView.messageLabel.text = "Name: \(user) \nPrice:\(result.price)\nTime: \(result.time)"
+                    //Calculate time
+                    let destination = CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude)
+                    
+                    var timeText: String
+                    
+                    let time = Int((((self.mapView.myLocation?.distanceFromLocation(destination))!/5) + 0.5))
+                    
+                    timeText = "\(time)"
+                    if(time > 60){
+                        timeText = "\((time/60)/60) hours"
+                    }
+                    
+                    alertView.messageLabel.text = "Name: \(user) \nPrice:\(result.price)\nTime: " +  timeText
+                    
                     alertView.messageLabel.font = UIFont.flatFontOfSize(14)
                     alertView.messageLabel.textColor = UIColor.cloudsColor()
                     
@@ -105,11 +118,12 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     alertView.defaultButtonTitleColor = UIColor.whiteColor()
                     
                     alertView.addButtonWithTitle("Request")
-                
+                    
                     alertView.addButtonWithTitle("Cancel")
+                    
                     alertView.cancelButtonIndex = 1
                     
-                
+                    
                     
                     //alertView.buttons[0].backgroundColor = FlatBlue()
                     //alertView.show()
