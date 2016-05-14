@@ -180,6 +180,7 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
             }) { _ in
                 self.loader.stopAnimating()
                 self.loader.removeFromSuperview()
+                //NSUserDefaults().setInteger(NSUserDefaults().s, forKey: "points")
                 alertView.show()
             }
         }

@@ -100,7 +100,7 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
                     
                     let time = Int((((self.mapView.myLocation?.distanceFromLocation(destination))!/5) + 0.5))
                     
-                    timeText = "\(time)"
+                    timeText = "\(time) seconds"
                     if(time > 60){
                         timeText = "\((time/60)/60) hours"
                     }
