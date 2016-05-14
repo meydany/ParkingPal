@@ -23,9 +23,10 @@ class HomeView: UIView, GMSMapViewDelegate {
         super.init(frame: frame)
         
         let parkButton = FUIButton(frame: CGRect(x: self.frame.width/2 - self.frame.width*0.75/2, y: self.frame.height/2.3, width: self.frame.width*0.75, height: self.frame.height/5))
+        
         parkButton.buttonColor = FlatSkyBlue()
         parkButton.shadowColor = FlatSkyBlueDark()
-        parkButton.shadowHeight = 5;
+        parkButton.shadowHeight = 4;
         parkButton.cornerRadius = 6.0;
         parkButton.setTitle("PARK", forState: UIControlState.Normal)
         parkButton.setTitleColor(UIColor.cloudsColor(), forState: UIControlState.Normal)
@@ -35,7 +36,7 @@ class HomeView: UIView, GMSMapViewDelegate {
         let unParkButton = FUIButton(frame: CGRect(x: self.frame.width/2 - self.frame.width*0.75/2, y: 2*self.frame.height/3, width: self.frame.width*0.75, height: self.frame.height/5))
         unParkButton.buttonColor = FlatWatermelon()
         unParkButton.shadowColor = FlatWatermelonDark()
-        unParkButton.shadowHeight = 5;
+        unParkButton.shadowHeight = 4;
         unParkButton.cornerRadius = 6.0;
         unParkButton.setTitle("UN-PARK", forState: UIControlState.Normal)
         unParkButton.setTitleColor(UIColor.cloudsColor(), forState: UIControlState.Normal)
@@ -62,15 +63,13 @@ class HomeView: UIView, GMSMapViewDelegate {
     func onParkClick() {
         if(UserLocation.currentLocation != nil) {
             print("Location: \(UserLocation.currentLocation!)")
-            (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(MapView(), animated: false, completion: nil)
-            
+            print("Address: \(UserLocation.locationAddress!)")
         }
     }
     
     func onUnParkClick() {
-        if(UserLocation.currentLocation != nil) {
-            print("Location: \(UserLocation.currentLocation!)")
-        }
+        (UIApplication.sharedApplication().keyWindow?.rootViewController)!.presentViewController(UnparkFormView(), animated: true, completion: nil)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
