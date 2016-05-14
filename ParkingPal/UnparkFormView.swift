@@ -36,13 +36,13 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         
         headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/6))
         headerLabel.textAlignment = NSTextAlignment.Center
-        headerLabel.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/8)
+        headerLabel.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.2)
         headerLabel.text = "UN-PARK"
         headerLabel.font = UIFont(name: "Quicksand-Light", size: 70 * ScreenRatios.screenWidthRatio)
         headerLabel.textColor = FlatWatermelon()
         
         nameField = FUITextField(frame: CGRect(x: 0, y: 0, width: 3*self.view.frame.width/4, height: self.view.frame.height/10))
-        nameField.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.25)
+        nameField.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.35)
         nameField.placeholder = "Your name"
         nameField.backgroundColor = UIColor.clearColor()
         nameField.edgeInsets = UIEdgeInsetsMake(4, 15, 4, 15)
@@ -52,7 +52,7 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         nameField.cornerRadius = 3
         
         locationField = FUITextField(frame: CGRect(x: 0, y: 0, width: 3*self.view.frame.width/4, height: self.view.frame.height/10))
-        locationField.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.4)
+        locationField.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.5)
         locationField.text = UserLocation.locationAddress!
         locationField.backgroundColor = UIColor.whiteColor()
         locationField.edgeInsets = UIEdgeInsetsMake(4, 15, 4, 15)
@@ -62,7 +62,7 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         locationField.cornerRadius = 3
         
         priceField = FUITextField(frame: CGRect(x: 0, y: 0, width: 3*self.view.frame.width/4, height: self.view.frame.height/10))
-        priceField.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.55)
+        priceField.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.65)
         priceField.placeholder = "Minimum Price"
         priceField.backgroundColor = UIColor.clearColor()
         priceField.edgeInsets = UIEdgeInsetsMake(4, 15, 4, 15)
@@ -72,7 +72,7 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         priceField.cornerRadius = 3
         
         submitButton = FUIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.width*0.75, height: self.view.frame.height/5))
-        submitButton.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.8)
+        submitButton.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height*0.85)
         submitButton.buttonColor = FlatWatermelon()
         submitButton.shadowColor = FlatWatermelonDark()
         submitButton.shadowHeight = 4;

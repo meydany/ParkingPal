@@ -139,9 +139,28 @@ extension UIViewController{
         let width = bounds.size.width
         let height = bounds.size.height
         
-        let points = BasicLabel(frame: self.view.frame , text: "\(NSUserDefaults().integerForKey("points"))", fontSize: 30, color: UIColor.blackColor() , position: CGPoint(x: width * 9/10, y: height/25))
+        let points = BasicLabel(frame: self.view.frame , text: "\(NSUserDefaults().integerForKey("points"))", fontSize: 30, color: UIColor.blackColor() , position: CGPoint(x: width * 7.9/10, y: height/33.8))
+        points.font = UIFont(name: "Quicksand-Light", size: 30 * ScreenRatios.screenWidthRatio)
+        points.textColor = FlatWhite()
+        points.sizeToFit()
         
+        let icon = UIImageView(image: resizeImage(UIImage(named: "ParkingPoints")!, newWidth: 25 * ScreenRatios.screenWidthRatio))
+        icon.center = CGPoint(x: width * 9.4/10, y: height/18)
+        
+        view.addSubview(icon)
         view.addSubview(points)
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     func addBackButton(){
@@ -157,8 +176,8 @@ extension UIViewController{
         //        back.shadowHeight = 3
         
         back.center = CGPoint(x: width * 1.2/10, y: height/20)
-        back.buttonColor = FlatWatermelon()
-        back.shadowColor = FlatRed()
+        back.buttonColor = FlatBlueDark()
+        back.shadowColor = FlatSkyBlueDark()
         back.shadowHeight = 4;
         back.cornerRadius = 6.0;
         back.setTitle("PARK", forState: UIControlState.Normal)
@@ -180,11 +199,11 @@ extension UIViewController{
         bar.backgroundColor = FlatSkyBlue()
         
         view.addSubview(bar)
-        
     }
     
     func goBack(){
-        //view.addSubview(HomeView())
+        self.removeFromParentViewController()
+        view.addSubview(HomeView())
         //self.removeFromParentViewController()
     }
 }
