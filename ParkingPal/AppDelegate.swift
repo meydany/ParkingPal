@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("o3bRoOmKK99gRMW3niQOV3SG39pl8y4XFwP4t77J", clientKey: "xeW88DhJFjBBokqetSZoiFnnfiBsF5ZtvQCQZoHQ")
         
         //Setup GoogleMaps
-        GMSServices.provideAPIKey("AIzaSyBnWhhhx44mnxupbWoZDEp3ywkzxy4I3ck")
+        GMSServices.provideAPIKey("AIzaSyAEeOQyFIVY8XFl5ViqeWbLJPsJy3Lrmig")
         
         return true
     }

@@ -36,8 +36,6 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
         //var location: CLLocationCoordinate2D//get it
         
         
-        
-<<<<<<< HEAD
         //marker.position = CLLocationCoordinate2DMake(location)
         //marker.appearAnimation = kGMSMarkerAnimationPop
         
@@ -93,8 +91,6 @@ class MapView: UIViewController, GMSMapViewDelegate,  FUIAlertViewDelegate {
             }
         }
         
-=======
->>>>>>> ea5709346055feeb507ac34c52b6620eb8838ad3
         // For later
         //marker.icon = UIImage(named: "flag_icon")
         
