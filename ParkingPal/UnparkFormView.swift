@@ -173,14 +173,29 @@ class UnparkFormView: UIViewController, FUIAlertViewDelegate {
         
         let locationCoordinate = CLLocationCoordinate2DMake((self.requestObject.objectForKey("Location") as! [String:Double])["Latitude"]!, (self.requestObject.objectForKey("Location") as! [String:Double])["Longitude"]!)
         UserLocation.getAddress(locationCoordinate) { (result) in
-            alertView.messageLabel.text = "Location: \(result) \nTime: \(10)"
+            //Calculate time
+            let destination = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+            
+            var timeText: String
+            
+            let startLoc = CLLocation(latitude: UserLocation.currentLocation!.latitude, longitude: UserLocation.currentLocation!.longitude)
+            
+            let time = Int((((startLoc.distanceFromLocation(destination))/5) + 0.5))
+            
+            timeText = "\(time) seconds"
+            if(time > 60){
+                timeText = "\((time/60)/60) hours"
+            }
+
+            alertView.messageLabel.text = "Location: \(result) \nTime: " + timeText
 
             UIView.animateWithDuration(0.25, animations: {
                 self.loader.alpha = 0
             }) { _ in
                 self.loader.stopAnimating()
                 self.loader.removeFromSuperview()
-                //NSUserDefaults().setInteger(NSUserDefaults().s, forKey: "points")
+                
+                NSUserDefaults().setInteger(NSUserDefaults().integerForKey("points") + Int(self.priceField.text!)!, forKey: "points")
                 alertView.show()
             }
         }

@@ -106,7 +106,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
 //        
         //view.addSubview((self.navigationController?.navigationBar)!)
         
-        //NSUserDefaults().setInteger(100, forKey: "points")
+        NSUserDefaults().setInteger(100, forKey: "points")
         
         view.addSubview(HomeView(frame: self.view.frame))
         //addNavbar()
@@ -144,7 +144,6 @@ extension UIViewController{
         points.textColor = FlatWhite()
         points.sizeToFit()
         
-        points.font = UIFont(name: "Quicksand-Light", size: 30)
         let icon = UIImageView(image: resizeImage(UIImage(named: "ParkingPoints")!, newWidth: 25 * ScreenRatios.screenWidthRatio))
         icon.center = CGPoint(x: width * 9.4/10, y: height/18)
         
